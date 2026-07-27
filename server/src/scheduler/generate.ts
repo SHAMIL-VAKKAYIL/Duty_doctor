@@ -24,6 +24,7 @@ function pad2(n: number): string {
   return n < 10 ? `0${n}` : `${n}`;
 }
 
+
 function countUnavailableToday(
   doctors: Doctor[],
   dateISO: string,
@@ -149,8 +150,11 @@ export function generateRoster(input: GenerateRosterInput): GeneratedAssignment[
     }
 
     // --- Generic fill for every remaining active shift ---------------
-    // Order: night first (most constrained pool), then the rest.
-    const fillOrder = [...activeShifts].sort((a, b) => a.retentionPriority - b.retentionPriority);
+  
+    const FILL_ORDER: typeof activeShifts[number]['id'][] = ['night', 'obgyn', 'morning', 'afternoon', 'day'];
+    const fillOrder = FILL_ORDER
+      .map((id) => activeShifts.find((s) => s.id === id))
+      .filter((s): s is typeof activeShifts[number] => Boolean(s));
     for (const shift of fillOrder) {
       if (filledSlots.has(shift.id)) continue;
 

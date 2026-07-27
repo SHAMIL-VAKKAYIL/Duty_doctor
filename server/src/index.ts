@@ -2,11 +2,16 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import pool from './db/pool';
+import rosterRouter from './routes/roster';
+
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use('/api/roster', rosterRouter);
 
+
+// Health check endpoint 
 app.get('/api/health', async (_req, res) => {
   try {
     const result = await pool.query('SELECT NOW() AS now');
