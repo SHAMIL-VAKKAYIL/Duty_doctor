@@ -8,7 +8,7 @@ import doctorsRouter from './routes/doctors';
 
 
 const app = express();
-app.use(cors({origin: process.env.FRONTEND_URL || '*'})); // Allow all origins for simplicity; adjust in production as needed
+app.use(cors({origin: process.env.NODE_ENV === 'production' ? "https://duty-doctor-nu.vercel.app" : '*'})); // Allow all origins for simplicity; adjust in production as needed
 app.use(express.json());
 app.use('/api/roster', rosterRouter);
 app.use('/api/doctors', doctorsRouter);
