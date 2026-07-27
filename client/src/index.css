@@ -1,0 +1,259 @@
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --border: #dfe3e8;
+  --text: #1f2430;
+  --text-muted: #6b7280;
+  --accent: #2f6f6a;
+  --override: #b45309;
+  --override-bg: #fef3e2;
+  --danger: #b3261e;
+  --danger-bg: #fdecea;
+
+  --shift-morning: #3b6fa0;
+  --shift-day: #2f7d6e;
+  --shift-afternoon: #a06b1f;
+  --shift-night: #4a4e8f;
+  --shift-obgyn: #a83e6c;
+
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+#root {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px 20px 64px;
+}
+
+.app-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.app-header h1 {
+  font-size: 1.4rem;
+  font-weight: 650;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.app-header .subtitle {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 2px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+select, button {
+  font-family: inherit;
+  font-size: 0.85rem;
+}
+
+select {
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+button {
+  padding: 7px 14px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-weight: 550;
+}
+
+button.primary {
+  background: var(--accent);
+  color: white;
+}
+
+button.primary:hover { filter: brightness(1.08); }
+button.primary:disabled { opacity: 0.5; cursor: default; }
+
+button.ghost {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.status-line {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.grid-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+table.roster {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.8rem;
+}
+
+table.roster th, table.roster td {
+  border: 1px solid var(--border);
+  padding: 6px 8px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+table.roster thead th {
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  z-index: 2;
+  font-weight: 600;
+}
+
+table.roster th.date-col {
+  position: sticky;
+  left: 0;
+  z-index: 3;
+  background: var(--surface);
+  min-width: 92px;
+}
+
+table.roster td.date-col {
+  position: sticky;
+  left: 0;
+  background: var(--surface);
+  z-index: 1;
+  font-weight: 600;
+  min-width: 92px;
+}
+
+.shift-label {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 1px 6px;
+  border-radius: 4px;
+  color: white;
+  margin-bottom: 2px;
+}
+
+.shift-morning { background: var(--shift-morning); }
+.shift-day { background: var(--shift-day); }
+.shift-afternoon { background: var(--shift-afternoon); }
+.shift-night { background: var(--shift-night); }
+.shift-obgyn { background: var(--shift-obgyn); }
+
+.cell-inner {
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 2px 4px;
+}
+
+.cell-inner:hover { background: #f0f2f5; }
+
+.cell-inner.override {
+  background: var(--override-bg);
+  border-left: 3px solid var(--override);
+}
+
+.cell-inner.inactive {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.cell-inner.empty {
+  color: var(--danger);
+  font-style: italic;
+}
+
+.doctor-name { font-size: 0.78rem; }
+
+.override-flag {
+  font-size: 0.62rem;
+  color: var(--override);
+  font-weight: 700;
+  margin-left: 5px;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 22, 28, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.modal {
+  background: var(--surface);
+  border-radius: 10px;
+  padding: 20px 22px;
+  width: 340px;
+  max-width: 90vw;
+}
+
+.modal h3 { margin: 0 0 4px; font-size: 1rem; }
+.modal .modal-sub { color: var(--text-muted); font-size: 0.8rem; margin-bottom: 14px; }
+
+.modal select, .modal textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  margin-bottom: 10px;
+  font-family: inherit;
+}
+
+.modal textarea { min-height: 60px; resize: vertical; }
+
+.modal-error {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+}
