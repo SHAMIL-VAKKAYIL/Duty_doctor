@@ -2,13 +2,16 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import pool from './db/pool';
+
 import rosterRouter from './routes/roster';
+import doctorsRouter from './routes/doctors';
 
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use('/api/roster', rosterRouter);
+app.use('/api/doctors', doctorsRouter);
 
 
 // Health check endpoint 
